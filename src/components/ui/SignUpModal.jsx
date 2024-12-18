@@ -19,7 +19,7 @@ export default function SignUpModal({ showSignUpModal, setShowSignUpModal }) {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://192.168.68.102:8000/api/users/register/", {
+      const response = await fetch("http://localhost:8000/api/users/register/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

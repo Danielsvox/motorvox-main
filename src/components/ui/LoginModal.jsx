@@ -4,7 +4,7 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
-export default function LoginModal({ showLoginModal, setShowLoginModal }) {
+export default function LoginModal({ showLoginModal, setShowLoginModal, setAuthToken  }) {
   const [loginData, setLoginData] = useState({
     username: "",
     password: "",
@@ -15,7 +15,7 @@ export default function LoginModal({ showLoginModal, setShowLoginModal }) {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://192.168.68.102:8000/api/token/", {
+      const response = await fetch("http://localhost:8000/api/token/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -29,7 +29,7 @@ export default function LoginModal({ showLoginModal, setShowLoginModal }) {
 
         // Store the token in localStorage (or in a state management store if you prefer)
         localStorage.setItem("authToken", data.access);
-
+        setAuthToken(data.access);
         // Handle successful login (e.g., redirect, show a success message, etc.)
         setShowLoginModal(false);
       } else {

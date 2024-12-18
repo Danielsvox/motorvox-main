@@ -18,7 +18,7 @@ export default function AccountModal({ showAccountModal, setShowAccountModal }) 
     const token = localStorage.getItem("authToken");
 
     if (token) {
-      fetch("http://192.168.68.102:8000/api/users/me/", {
+      fetch("http://localhost:8000/api/users/me/", {
         method: "GET",
         headers: {
           "Authorization": `Bearer ${token}`,
