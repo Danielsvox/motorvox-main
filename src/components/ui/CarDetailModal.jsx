@@ -20,7 +20,7 @@ export default function CarDetailModal({ car, showCarDetails, setShowCarDetails 
       <p className="mt-4">{car.description || "No description provided."}</p>
       <p className="mt-2 font-bold">Price: ${car.price}</p>
     </div>
-    <Link href={`cars/${car.id}`} passHref>
+    <Link href={`/cars/${car.id}`} passHref>
       <Button className="w-full mt-4 bg-primary text-white hover:bg-primary/90">
         View Full Details
       </Button>

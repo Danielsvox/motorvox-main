@@ -3,8 +3,9 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } f
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { API_BASE_URL } from '@/config/api';
 
-export default function LoginModal({ showLoginModal, setShowLoginModal, setAuthToken  }) {
+export default function LoginModal({ showLoginModal, setShowLoginModal, setAuthToken }) {
   const [loginData, setLoginData] = useState({
     username: "",
     password: "",
@@ -15,7 +16,7 @@ export default function LoginModal({ showLoginModal, setShowLoginModal, setAuthT
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:8000/api/token/", {
+      const response = await fetch(`${API_BASE_URL}/api/token/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

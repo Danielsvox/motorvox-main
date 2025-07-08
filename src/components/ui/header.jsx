@@ -2,16 +2,22 @@ import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
-export default function Header({ authToken, setShowSignUpModal, setShowLoginModal, setShowAccountModal, handleLogout }) {
+export default function Header({ 
+  authToken = null, 
+  setShowSignUpModal = () => {}, 
+  setShowLoginModal = () => {}, 
+  setShowAccountModal = () => {}, 
+  handleLogout = () => {} 
+}) {
   return (
     <header className="sticky top-0 z-40 w-full border-b bg-background">
       <div className="container mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <Link href="#" className="flex items-center gap-2 font-bold" prefetch={false}>
+        <Link href="/" className="flex items-center gap-2 font-bold" prefetch={false}>
           <CarIcon className="h-6 w-6" />
           <span className="hidden sm:inline">MotorVox</span>
         </Link>
         <nav className="hidden items-center gap-4 sm:flex">
-          <Link href="#" className="text-sm font-medium hover:text-primary" prefetch={false}>Browse Cars</Link>
+          <Link href="/" className="text-sm font-medium hover:text-primary" prefetch={false}>Browse Cars</Link>
           <Link href="#" className="text-sm font-medium hover:text-primary" prefetch={false}>Certifications</Link>
           <Link href="#" className="text-sm font-medium hover:text-primary" prefetch={false}>About</Link>
           <Link href="#" className="text-sm font-medium hover:text-primary" prefetch={false}>Contact</Link>

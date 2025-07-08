@@ -3,6 +3,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } f
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { API_BASE_URL } from '@/config/api';
 
 export default function SignUpModal({ showSignUpModal, setShowSignUpModal }) {
   const [signUpData, setSignUpData] = useState({
@@ -19,7 +20,7 @@ export default function SignUpModal({ showSignUpModal, setShowSignUpModal }) {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:8000/api/users/register/", {
+      const response = await fetch(`${API_BASE_URL}/api/users/register/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
