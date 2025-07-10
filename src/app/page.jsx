@@ -3,11 +3,15 @@
 import { useState, useEffect } from "react";
 import CarList from "@/components/ui/carList";
 import { API_BASE_URL } from '@/config/api';
+import { useUser } from "@/contexts/UserContext";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export default function HomePage() {
   const [initialData, setInitialData] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
+  const { user } = useUser();
 
   useEffect(() => {
     setLoading(true);
@@ -42,7 +46,20 @@ export default function HomePage() {
           <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary border-t-transparent"></div>
         </div>
       ) : (
-        <CarList initialData={initialData} error={error} />
+        <div>
+          {user?.is_seller && (
+            <div className="container mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 pt-8">
+              <div className="flex justify-end">
+                <Link href="/my-listings" prefetch={false}>
+                  <Button className="rounded-md bg-secondary px-4 py-2 text-sm font-medium text-secondary-foreground hover:bg-secondary/90">
+                    Manage My Listings
+                  </Button>
+                </Link>
+              </div>
+            </div>
+          )}
+          <CarList initialData={initialData} error={error} />
+        </div>
       )}
     </main>
   );

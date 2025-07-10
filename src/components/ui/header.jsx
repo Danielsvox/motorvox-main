@@ -1,14 +1,17 @@
 import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { useUser } from "@/contexts/UserContext";
 
-export default function Header({ 
-  authToken = null, 
-  setShowSignUpModal = () => {}, 
-  setShowLoginModal = () => {}, 
-  setShowAccountModal = () => {}, 
-  handleLogout = () => {} 
+export default function Header({
+  authToken = null,
+  setShowSignUpModal = () => { },
+  setShowLoginModal = () => { },
+  setShowAccountModal = () => { },
+  handleLogout = () => { }
 }) {
+  const { user } = useUser();
+
   return (
     <header className="sticky top-0 z-40 w-full border-b bg-background">
       <div className="container mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8">
@@ -23,6 +26,13 @@ export default function Header({
           <Link href="#" className="text-sm font-medium hover:text-primary" prefetch={false}>Contact</Link>
         </nav>
         <div className="flex items-center gap-4">
+          {authToken && user?.is_seller && (
+            <Link href="/my-listings" prefetch={false}>
+              <Button className="rounded-md bg-secondary px-4 py-2 text-sm font-medium text-secondary-foreground hover:bg-secondary/90">
+                Manage My Listings
+              </Button>
+            </Link>
+          )}
           {authToken ? (
             <>
               <Button onClick={() => setShowAccountModal(true)} className="rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90">
